@@ -12,6 +12,6 @@ namespace OrderService.Api.Messages
         public string CardNumber { get; set; }
         public string CardName { get; set; }
         public string CardExpiration { get; set; }
-        public int BasketTotal { get; set; }
+        public decimal BasketTotal { get; set; }
     }
 }

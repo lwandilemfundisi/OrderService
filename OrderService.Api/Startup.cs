@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OrderService.Api.Extensions;
+using OrderService.Api.Messaging;
 using OrderService.Domain;
 using OrderService.Intergration.MessagingBus;
 using OrderService.Persistence.Extensions;
@@ -37,6 +38,7 @@ namespace OrderService.Api
             });
 
             services.AddSingleton<IMessageBus, AzServiceBusMessageBus>();
+            services.AddSingleton<IAzServiceBusConsumer, AzServiceBusConsumer>();
 
             services
                 .AddControllers()

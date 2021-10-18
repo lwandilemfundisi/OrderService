@@ -28,7 +28,7 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel
 
         #region Properties
         public string UserId { get; set; }
-        public int OrderTotal { get; set; }
+        public decimal OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }
         public bool OrderPaid { get; set; }
 
@@ -38,7 +38,7 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel
 
         public void PlaceOrder(
             string userId, 
-            int orderTotal, 
+            decimal orderTotal, 
             DateTime orderPlaced)
         {
             UserId = userId;

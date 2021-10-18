@@ -13,7 +13,7 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel.Events
     {
         public OrderPlacedEvent(
             string userId, 
-            int orderTotal, 
+            decimal orderTotal, 
             DateTime orderPlaced)
         {
             UserId = userId;
@@ -22,7 +22,7 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel.Events
         }
 
         public string UserId { get; }
-        public int OrderTotal { get; }
+        public decimal OrderTotal { get; }
         public DateTime OrderPlaced { get; }
     }
 }
