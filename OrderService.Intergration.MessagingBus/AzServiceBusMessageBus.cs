@@ -14,17 +14,16 @@ namespace OrderService.Intergration.MessagingBus
 {
     public class AzServiceBusMessageBus : IMessageBus
     {
+        private readonly IConfiguration _configuration;
+
+        public AzServiceBusMessageBus(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task PublishMessage(IntegrationBaseMessage message, string topicName)
         {
-            var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
-                .AddJsonFile("appsettings.json", optional: false)
-                .AddJsonFile($"appsettings.{envName}.json", optional: false)
-                .Build();
-
-            ISenderClient topicClient = new TopicClient(configuration["Azure:ServiceBusConnection"], topicName);
+            ISenderClient topicClient = new TopicClient(_configuration["Azure:ServiceBusConnection"], topicName);
 
             var jsonMessage = JsonConvert.SerializeObject(message);
             var serviceBusMessage = new Message(Encoding.UTF8.GetBytes(jsonMessage))

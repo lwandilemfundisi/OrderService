@@ -31,6 +31,7 @@ namespace OrderService.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(_ => Configuration);
             services.AddLogging(l => l.AddConsole());
             services.AddSwaggerGen(c =>
             {
@@ -45,7 +46,7 @@ namespace OrderService.Api
                 .AddNewtonsoftJson();
             services
                 .ConfigureOrderServiceDomain()
-                .ConfigureOrderPersistence(Configuration);
+                .ConfigureOrderPersistence();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

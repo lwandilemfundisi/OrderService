@@ -12,8 +12,7 @@ namespace OrderService.Persistence.Extensions
     public static class EntityFrameworkExtensions
     {
         public static IDomainContainer ConfigureOrderPersistence(
-            this IDomainContainer domainContainer,
-            IConfiguration configuration)
+            this IDomainContainer domainContainer)
         {
             return domainContainer
                 .ConfigureEntityFramework(EntityFrameworkConfiguration.New)
@@ -21,7 +20,6 @@ namespace OrderService.Persistence.Extensions
                 .RegisterServices(sr =>
                 {
                     sr.AddTransient<IPersistenceFactory, EntityFrameworkPersistenceFactory<OrderContext>>();
-                    sr.AddSingleton(rctx => { return configuration; });
                 });
         }
         
