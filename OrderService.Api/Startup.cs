@@ -45,7 +45,7 @@ namespace OrderService.Api
                 .AddControllers()
                 .AddNewtonsoftJson();
             services
-                .ConfigureOrderServiceDomain()
+                .ConfigureOrderServiceDomain(Configuration)
                 .ConfigureOrderPersistence();
         }
 

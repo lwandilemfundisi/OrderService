@@ -17,11 +17,17 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel.Commands
         public PlaceOrderCommand(
             OrderId id,
             string userId,
+            string cardNumber,
+            string cardName,
+            string cardExpiration,
             decimal orderTotal,
             DateTime orderPlaced)
             : base(id)
         {
             UserId = userId;
+            CardNumber = cardNumber;
+            CardName = cardName;
+            CardExpiration = cardExpiration;
             OrderTotal = orderTotal;
             OrderPlaced = orderPlaced;
         }
@@ -31,6 +37,12 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel.Commands
         #region Properties
 
         public string UserId { get; }
+
+        public string CardNumber { get; }
+
+        public string CardName { get; }
+
+        public string CardExpiration { get; }
 
         public decimal OrderTotal { get; }
 
@@ -49,7 +61,14 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel.Commands
             PlaceOrderCommand command, 
             CancellationToken cancellationToken)
         {
-            aggregate.PlaceOrder(command.UserId, command.OrderTotal, command.OrderPlaced);
+            aggregate.PlaceOrder(
+                command.UserId,
+                command.CardNumber,
+                command.CardName,
+                command.CardExpiration,
+                command.OrderTotal, 
+                command.OrderPlaced);
+
             return Task.FromResult(ExecutionResult.Success());
         }
 

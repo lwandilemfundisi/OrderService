@@ -53,6 +53,9 @@ namespace OrderService.Api.Messaging
             await _commandBus.PublishAsync(new PlaceOrderCommand(
                 OrderId.New,
                 basketCheckoutMessage.UserId,
+                basketCheckoutMessage.CardNumber,
+                basketCheckoutMessage.CardName,
+                basketCheckoutMessage.CardExpiration,
                 basketCheckoutMessage.BasketTotal,
                 DateTime.Now), arg2);
         }

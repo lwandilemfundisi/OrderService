@@ -37,7 +37,10 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel
         #region Methods
 
         public void PlaceOrder(
-            string userId, 
+            string userId,
+            string cardNumber,
+            string cardName,
+            string cardExpiration,
             decimal orderTotal, 
             DateTime orderPlaced)
         {
@@ -46,7 +49,10 @@ namespace OrderService.Domain.DomainModel.OrderDomainModel
             OrderPlaced = orderPlaced;
 
             Emit(new OrderPlacedEvent(
-                userId, 
+                userId,
+                cardNumber,
+                cardName,
+                cardExpiration,
                 orderTotal, 
                 orderPlaced));
         }
