@@ -7,7 +7,7 @@ namespace OrderService.Api.Models
     {
         public OrderId Id { get; set; }
         public decimal OrderTotal { get; set; }
-        public DateTime OrderPlaced { get; set; }
+        public string OrderPlaced { get; set; }
         public bool OrderPaid { get; set; }
     }
 }
